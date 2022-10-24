@@ -24,11 +24,11 @@ window.addEventListener('wheel', ({ deltaY }) => {
   updateScale(-deltaY / 5000)
 })
 
-let initialDistance = null
+let lastDistance = null
 
 window.addEventListener('touchstart', ({ touches }) => {
   if (touches.length > 1) {
-    initialDistance = Math.sqrt(
+    lastDistance = Math.sqrt(
       Math.pow(touches[0].clientX - touches[1].clientX, 2)
       + Math.pow(touches[0].clientY - touches[1].clientY, 2)
     )
@@ -36,17 +36,18 @@ window.addEventListener('touchstart', ({ touches }) => {
 })
 
 window.addEventListener('touchend', () => {
-  initialDistance = null
+  lastDistance = null
 })
 
 window.addEventListener('touchmove', ({ touches }) => {
-  if (initialDistance !== null) {
+  if (lastDistance !== null) {
     const distance = Math.sqrt(
       Math.pow(touches[0].clientX - touches[1].clientX, 2)
       + Math.pow(touches[0].clientY - touches[1].clientY, 2)
     )
-    const diff = distance - initialDistance
-    updateScale(diff / 1000)
+    const diff = distance - lastDistance
+    updateScale(diff / 500)
+    lastDistance = distance
   }
 })
 
