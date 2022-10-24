@@ -6,12 +6,12 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url=./ --no-source-maps"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "parcel-plugin-clean-dist": "^0.0.6",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "vite": "^3.1.8"
   }
 }
